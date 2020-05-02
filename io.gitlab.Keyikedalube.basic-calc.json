@@ -1,0 +1,61 @@
+{
+        "app-id": "io.gitlab.Keyikedalube.basic-calc",
+        "runtime": "org.gnome.Platform",
+        "runtime-version": "3.34",
+        "sdk": "org.gnome.Sdk",
+        "command": "gnome-calculator",
+        "finish-args": [
+                /* X11 access */
+                "--share=ipc", "--socket=fallback-x11",
+                /* Wayland access */
+                "--socket=wayland"
+        ],
+        "modules": [
+                {
+                        "name": "sigc++",
+                        "config-opts": [ "--disable-documentation" ],
+                        "sources": [
+                                {
+                                        "type": "archive",
+                                        "url": "http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.10/libsigc++-2.10.2.tar.xz",
+                                        "sha256": "b1ca0253379596f9c19f070c83d362b12dfd39c0a3ea1dd813e8e21c1a097a98"
+                                }
+                        ]
+                },
+                {
+                        "name": "glibmm",
+                        "config-opts": [ "--disable-documentation" ],
+                        "sources": [
+                                {
+                                        "type": "archive",
+                                        "url": "http://ftp.gnome.org/pub/GNOME/sources/glibmm/2.64/glibmm-2.64.2.tar.xz",
+                                        "sha256": "a75282e58d556d9b2bb44262b6f5fb76c824ac46a25a06f527108bec86b8d4ec"
+                                }
+                        ]
+                },
+                {
+                        "name": "gtkmm",
+                        "config-opts": [ "--disable-documentation" ],
+                        "build-options": { "cxxflags": "-02 -g0 -std=c++11" },
+                        "sources": [
+                                {
+                                        "type": "archive",
+                                        "url": "http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.24/gtkmm-3.24.2.tar.xz",
+                                        "sha256": "6d71091bcd1863133460d4188d04102810e9123de19706fb656b7bb915b4adc3"
+                                }
+                        ]
+                },
+                {
+                        "name": "basic-calc",
+                        "sources": [
+                                {
+                                        "type": "archive",
+                                        "url": "https://gitlab.com/Keyikedalube/basic-calc/-/archive/v1.0/basic-calc-v1.0.tar.gz",
+                                        "sha256": "9cf91a9923e65a6bc15be68ad940a643710cb9dcb7c33c68da8785c0796c3b38"
+                                }
+                        ],
+                        "buildsystem": "cmake",
+                        "config-opts": [ "-DCMAKE_INSTALL_PREFIX=/app" ]
+                }
+        ]
+}
